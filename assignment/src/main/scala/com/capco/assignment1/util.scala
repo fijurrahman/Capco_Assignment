@@ -1,6 +1,6 @@
 package com.capco.assignment1
 
-import scala.collection.immutable.HashMap
+import scala.collection.immutable.{HashMap, Queue}
 import scala.util.Try
 
 object util {
@@ -25,7 +25,8 @@ object util {
   // HELPER CLASS TO BUILD LETTERS
   def numberToLetters(letters: String) = {
     var res = new StringBuilder
-    letters.split("\\+").toList.foreach(x=> {
+
+      letters.split("\\+").toList.foreach(x=> {
       x.split(" ").map(ch =>
       res.append(buildLetterTable(ch.toInt))
       )
@@ -35,13 +36,17 @@ object util {
     res.mkString("")
   }
 
-  def allPrefix(num: Int,str: String) = {val
-   val Hmap = HashMap(str)
-   if (str.length >= num) {
-    str.substring(1,3)
-   }else{
 
-   }
-   }
+  def allPrefix(listofelement: LazyList[String],len: Int) = {
+     lazy val result = scala.collection.mutable.Set[String]()
+     listofelement.foreach(element => {
+      element  match {
+        case e if e.length > len =>  result.add(e.substring(0,3)+",")
+        case _ => "Prefix Not Matched"
+      }
+    })
+    result
+  }
+
 
 }
